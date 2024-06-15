@@ -1,11 +1,17 @@
+import { useDispatch } from "react-redux"
 import Contact from "../Contact/Contact"
 import css from "./ContactList.module.css"
-const ContactList = ({ contacts, onDelete}) => {
+import { deleteContact } from "../../redux/contactsSlice";
+const ContactList = ({ contacts}) => {
+  const dispatch = useDispatch();
+  const handleDelete = (contactId) =>{
+    dispatch (deleteContact(contactId))
+  }
   return (
 
     <ul className={css.contactContainer}>
       {contacts.map(contact => (
-        <Contact data={contact} key = {contact.id} onDelete={onDelete} />
+        <Contact data={contact} key = {contact.id} onDelete={()=>handleDelete (contact.id)} />
       ))}
     </ul>
 
