@@ -12,7 +12,7 @@ const contactsSlice = createSlice({
   initialState: contactsInitialState,
   reducers: {
     addContact: (state, action) => {
-      state.items.push(action.payload);
+      state.items = [...state.items, action.payload];
       window.localStorage.setItem('saved-contact', JSON.stringify(state.items));
     },
     deleteContact: (state, action) => {
