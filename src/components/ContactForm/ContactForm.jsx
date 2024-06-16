@@ -11,7 +11,7 @@ const validationSchema = Yup.object().shape({
   phone: Yup.string().min(3, 'Minimum 3 symbols').max(50, 'Maximum 50 symbols').required('required').matches(/^\d+$/, 'Phone number must be numeric')
 });
 
-const ContactForm = ({ submit }) => {
+const ContactForm = () => {
   const dispatch = useDispatch();
   const nameFieldId = useId();
   const phoneFieldId = useId();
@@ -29,7 +29,6 @@ const ContactForm = ({ submit }) => {
           number: values.phone,
         };
         dispatch(addContact(newContact)); 
-        submit(values); 
         actions.resetForm();
       }}
       validationSchema={validationSchema}
